@@ -10,6 +10,9 @@ from sqlalchemy import sql
 
 from models import (
     User,
+    QuestionAnswer,
+    SessionLog,
+    Admin
 )
 
 
@@ -112,3 +115,20 @@ class UserDAO(BaseDAO):
         """
         query = sql.update(User).returning(User.id).where(User.tg_id == tg_id).values(fields)
         return await pg.fetchrow(query)
+
+
+class QuestionAnswerDAO(BaseDAO):
+    def __init__(self) -> None:
+        self.model = QuestionAnswer
+
+
+class SessionLogDAO(BaseDAO):
+    def __init__(self) -> None:
+        self.model = SessionLog
+
+
+class AdminDAO(BaseDAO):
+    def __init__(self) -> None:
+        self.model = Admin
+
+
